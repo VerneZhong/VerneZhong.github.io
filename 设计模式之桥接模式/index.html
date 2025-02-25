@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="桥接模式,Bridge Design Pattern," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Verne Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之桥接模式">
+<meta property="og:url" content="https://chivalry727.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Verne Blog">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/008aQ1h9ly1girf7h57dxj30p00dwt9u.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/008aQ1h9ly1gist03hca4j30e206r3ye.jpg">
+<meta property="og:image" content="https://tvax2.sinaimg.cn/large/008aQ1h9ly1gist03pn9gj30jl07z0ss.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/008aQ1h9ly1gisthedbd0j30e5066mx4.jpg">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/008aQ1h9ly1gisthefm5jj30fs04wmx2.jpg">
+<meta property="article:published_time" content="2020-09-15T07:33:39.000Z">
+<meta property="article:modified_time" content="2022-11-06T08:33:09.468Z">
+<meta property="article:author" content="Verne.Zhong">
+<meta property="article:tag" content="桥接模式">
+<meta property="article:tag" content="Bridge Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva3.sinaimg.cn/large/008aQ1h9ly1girf7h57dxj30p00dwt9u.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chivalry727.github.io/设计模式之桥接模式/"/>
+
+
+
+
+
+  <title>设计模式之桥接模式 | Verne Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Verne Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">很多人不曾见过太阳，也就可以忍受黑暗!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chivalry727.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Verne Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式之桥接模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T16:33:39+09:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://tva3.sinaimg.cn/large/008aQ1h9ly1girf7h57dxj30p00dwt9u.jpg"></p>
+<span id="more"></span>
+
+<h2 id="设计模式之桥接模式"><a href="#设计模式之桥接模式" class="headerlink" title="设计模式之桥接模式"></a>设计模式之桥接模式</h2><h3 id="什么是桥接设计模式？"><a href="#什么是桥接设计模式？" class="headerlink" title="什么是桥接设计模式？"></a>什么是桥接设计模式？</h3><p>桥接设计模式属于结构设计模式类别。 这种模式侧重于抽象概念的局限性。 在Java上下文中，我们使用继承来开发抽象概念。 有几个实现偏差支持实现继承。 但是，这将实现永久绑定到抽象上，从而限制了灵活性。 在某些情况下，您想独立地修改或扩展抽象以及实现。 桥接模式通过将抽象与其实现分离，将有助于解决该限制。</p>
+<p>这种模式很好地说明了“优先考虑组成而不是继承”的概念</p>
+<p>GOF定义的桥梁设计模式，</p>
+<blockquote>
+<p>“将抽象与其实现分离开来，以便两者可以独立变化。”</p>
+</blockquote>
+<p>什么是抽象？</p>
+<p>如果我们想到Java语言的要点，则可以通过接口或抽象类来定义抽象。 这是定义抽象概念的非常狭窄的方法。 当认为是面向对象的概念时，抽象只是对更复杂细节的表示或概括。 抽象涵盖了整个事物的具体实现的细节。</p>
+<p>通常，当抽象需要多个实现时，继承就是一种机制，用于满足该需求。 但是，某些方案要求独立添加或修改抽象以及实现，而不会给系统带来任何错误。</p>
+<h3 id="现实生活中的例子"><a href="#现实生活中的例子" class="headerlink" title="现实生活中的例子"></a>现实生活中的例子</h3><p>假设汽车和遥控器场景。 汽车是这种情况的抽象。 丰田、本田和奥迪将成为汽车抽象的实现。 每辆汽车将具有一套遥控器。 如果远程控制是抽象远程启动器，则远程门锁/开和远程报警将作为远程控制的实现。 宝马这样的汽车实现中有一个新的补充。 它还应具有遥控器的3种实现方式。 因此，抽象和实现可以根据需求而变化。</p>
+<h3 id="桥接模式如何工作？"><a href="#桥接模式如何工作？" class="headerlink" title="桥接模式如何工作？"></a>桥接模式如何工作？</h3><p>通常，在这种模式下，抽象类代表抽象。 该抽象维护一个单独的层次结构。 单独的层次结构维护抽象类的实现。 同样，模式允许类（抽象）及其作用（实现）随需要而变化。 植入包括一个抽象点和该层次结构下的几个实现标准。</p>
+<h3 id="桥接模式的结构"><a href="#桥接模式的结构" class="headerlink" title="桥接模式的结构"></a>桥接模式的结构</h3><p>让我们使用抽象和具体的实现策略来阐明这一点。 假设您有两个系统，每个系统中都有抽象类和具体类。 系统X由“摘要A”组成，而具体实现则由“具体A”组成。 然后，系统Y由“摘要B”组成，其具体实现为“混凝土B”。 摘要A通过“ Has-A”关系与摘要B连接。 摘要A在其内部维护摘要B的实例。 这种“ Has-A”关系在两个系统之间架起了一座桥梁。 因此，模式包含两层抽象。 因此，该结构被称为桥接模式结构。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/008aQ1h9ly1gist03hca4j30e206r3ye.jpg"></p>
+<h3 id="桥接模式解决的问题"><a href="#桥接模式解决的问题" class="headerlink" title="桥接模式解决的问题"></a>桥接模式解决的问题</h3><p>在应用程序中，我们应该首先确定候选组件以开发一个抽象并作为实现。 抽象和实现分为两个层次结构，并独立维护。</p>
+<h3 id="桥接模式的标准技术说明"><a href="#桥接模式的标准技术说明" class="headerlink" title="桥接模式的标准技术说明"></a>桥接模式的标准技术说明</h3><p>图2代表了桥梁设计模式的UML图。 它描述了两组抽象，它们独立变化。</p>
+<p><img src="https://tvax2.sinaimg.cn/large/008aQ1h9ly1gist03pn9gj30jl07z0ss.jpg"></p>
+<p>桥接设计模式类图</p>
+<h3 id="桥梁设计模式的组成部分"><a href="#桥梁设计模式的组成部分" class="headerlink" title="桥梁设计模式的组成部分"></a>桥梁设计模式的组成部分</h3><ul>
+<li><strong><em>Abstraction</em></strong>：这是桥接模式的核心组件之一，它包括对实现者的引用。</li>
+<li><strong><em>Refined Abstraction</em></strong>：这扩展了抽象并向实现者隐藏了更精细的元素。就是说，这不会影响实现者，以及这些实现，也不依赖于<code>Implementor</code>接口中的任何具体实现者。</li>
+<li><strong><em>Implementor</em></strong>：这是下级实施的接口。 这不需要直接与抽象有关。 它仅与has-a关系连接。</li>
+<li><strong><em>ConcreteImplementor</em></strong>：该组件通过定义实现来实现实现者接口。 实施细节对客户端隐藏。</li>
+</ul>
+<h3 id="实现桥接模式步骤"><a href="#实现桥接模式步骤" class="headerlink" title="实现桥接模式步骤"></a>实现桥接模式步骤</h3><ol>
+<li>确定应独立变化的内容那就是您必须基于正交维度派生和分析类。 它们可能像前端/后端，域/基础架构以及接口/平台类层次结构</li>
+<li>通过分析候选类别的不同功能来识别“实现者”界面</li>
+<li>将一个类类别标识为“抽象”，并构建抽象类，并在抽象类中包含“实现者”的实例</li>
+<li>然后扩展抽象类以生成不同的实现，以满足您的不同需求</li>
+<li>构建客户端程序以满足您的需求</li>
+<li>您可以根据需要为“抽象”和“执行器”添加更多具体的类，并扩展系统</li>
+</ol>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>让我们举一个简单的例子来阐明这种模式。 假设一位数字艺术家需要创建具有不同颜色的形状。 他正在开发一个程序来实现这个目标。 最初，几乎没有其他选择。 但是，根据客户的要求，将有不同类型的形状和颜色可以适应以产生最佳效果。 因此，艺术家将来必须在“形状”类别中添加不同的形状，并在“颜色”类别中添加多种颜色。</p>
+<p>在继续之前，让我们看看没有桥接模式的情况。</p>
+<h4 id="没有桥接模式"><a href="#没有桥接模式" class="headerlink" title="没有桥接模式"></a>没有桥接模式</h4><p>您将必须为具有困难命名模式的每种形状创建冗长而复杂的子类。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/008aQ1h9ly1gisthedbd0j30e5066mx4.jpg"></p>
+<h4 id="使用桥接模式"><a href="#使用桥接模式" class="headerlink" title="使用桥接模式"></a>使用桥接模式</h4><p>两个类层次结构将在两个类层次结构之间提供更大的灵活性。</p>
+<p><img src="https://tva3.sinaimg.cn/large/008aQ1h9ly1gisthefm5jj30fs04wmx2.jpg"></p>
+<p>让我们将此场景放到Java编程中。</p>
+<h4 id="该计划的组成部分"><a href="#该计划的组成部分" class="headerlink" title="该计划的组成部分"></a>该计划的组成部分</h4><ul>
+<li><strong><em>AbstractShape</em></strong>：表示一组具体的形状实现的抽象类/接口</li>
+<li><strong><em>RefinedShapeCircle</em></strong>：Circle是“ Shape”抽象的一种扩展</li>
+<li><strong><em>RefinedShapeTriangle</em></strong>：三角形是“ Shape”抽象的另一个示例</li>
+<li><strong><em>ColorImplementor</em></strong>：这是“颜色”类别的抽象，也是“形状”类别的实现的一部分。</li>
+<li><strong><em>ConcreteColorRed</em></strong>：“颜色”抽象的红色扩展</li>
+<li><strong><em>ConcreteColorGreen</em></strong>：“颜色”抽象的绿色扩展</li>
+</ul>
+<h4 id="Java代码示例"><a href="#Java代码示例" class="headerlink" title="Java代码示例"></a>Java代码示例</h4><p><strong><em>ColorImplementor.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ColorImplementor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">applyColor</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>AbstractShape.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractShape</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建实现者实例（组成）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> ColorImplementor color;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 以实现者作为输入参数的构造函数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> color</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">AbstractShape</span><span class="params">(ColorImplementor color)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.color = color;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 与将颜色填充到对象有关的抽象方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">applyShapeColor</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>RefinedShapeCircle.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RefinedShapeCircle</span> <span class="keyword">extends</span> <span class="title class_">AbstractShape</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">RefinedShapeCircle</span><span class="params">(ColorImplementor color)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(color);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">applyShapeColor</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Circle color applying...&quot;</span>);</span><br><span class="line">        color.applyColor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>RefinedShapeTriangle.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RefinedShapeTriangle</span> <span class="keyword">extends</span> <span class="title class_">AbstractShape</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">RefinedShapeTriangle</span><span class="params">(ColorImplementor color)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(color);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">applyShapeColor</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;Triangle color applying...&quot;</span>);</span><br><span class="line">        color.applyColor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>ConcreteColorRed.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteColorRed</span> <span class="keyword">implements</span> <span class="title class_">ColorImplementor</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">applyColor</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Applying Red....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>ConcreteColorGreen.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteColorGreen</span> <span class="keyword">implements</span> <span class="title class_">ColorImplementor</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">applyColor</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Apply Green...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>ShapeColorTester.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShapeColorTester</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建Triangle实例并应用红色</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Apply Red Color to the Triangle&quot;</span>);</span><br><span class="line">        <span class="type">AbstractShape</span> <span class="variable">triangle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RefinedShapeTriangle</span>(<span class="keyword">new</span> <span class="title class_">ConcreteColorRed</span>());</span><br><span class="line">        triangle.applyShapeColor();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建Triangle实例并应用绿色</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Appying Green Color to the Triangle&quot;</span>);</span><br><span class="line">        <span class="type">AbstractShape</span> <span class="variable">triagleGreen</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RefinedShapeTriangle</span>(<span class="keyword">new</span> <span class="title class_">ConcreteColorGreen</span>());</span><br><span class="line">        triagleGreen.applyShapeColor();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建Circle实例并应用红色</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Appying Red Color to the Circle&quot;</span>);</span><br><span class="line">        <span class="type">AbstractShape</span> <span class="variable">circleRed</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RefinedShapeCircle</span>(<span class="keyword">new</span> <span class="title class_">ConcreteColorRed</span>());</span><br><span class="line">        circleRed.applyShapeColor();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建Circle实例并应用绿色</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Applying Green Color to the Circle&quot;</span>);</span><br><span class="line">        <span class="type">AbstractShape</span> <span class="variable">circleGreen</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RefinedShapeCircle</span>(<span class="keyword">new</span> <span class="title class_">ConcreteColorGreen</span>());</span><br><span class="line">        circleGreen.applyShapeColor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Apply</span> <span class="built_in">Red</span> <span class="variable">Color</span> <span class="variable">to</span> <span class="variable">the</span> <span class="built_in">Triangle</span></span><br><span class="line"><span class="built_in">Triangle</span> <span class="variable">color</span> <span class="variable">applying</span><span class="operator">...</span><span class="variable">Applying</span> <span class="built_in">Red</span><span class="operator">....</span></span><br><span class="line"><span class="variable">Appying</span> <span class="built_in">Green</span> <span class="variable">Color</span> <span class="variable">to</span> <span class="variable">the</span> <span class="built_in">Triangle</span></span><br><span class="line"><span class="built_in">Triangle</span> <span class="variable">color</span> <span class="variable">applying</span><span class="operator">...</span><span class="built_in">Apply</span> <span class="built_in">Green</span><span class="operator">...</span></span><br><span class="line"><span class="variable">Appying</span> <span class="built_in">Red</span> <span class="variable">Color</span> <span class="variable">to</span> <span class="variable">the</span> <span class="built_in">Circle</span></span><br><span class="line"><span class="built_in">Circle</span> <span class="variable">color</span> <span class="variable">applying</span><span class="operator">...</span></span><br><span class="line"><span class="variable">Applying</span> <span class="built_in">Red</span><span class="operator">....</span></span><br><span class="line"><span class="variable">Applying</span> <span class="built_in">Green</span> <span class="variable">Color</span> <span class="variable">to</span> <span class="variable">the</span> <span class="built_in">Circle</span></span><br><span class="line"><span class="built_in">Circle</span> <span class="variable">color</span> <span class="variable">applying</span><span class="operator">...</span></span><br><span class="line"><span class="built_in">Apply</span> <span class="built_in">Green</span><span class="operator">...</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="何时使用桥接模式"><a href="#何时使用桥接模式" class="headerlink" title="何时使用桥接模式"></a>何时使用桥接模式</h3><ul>
+<li>当需要取消抽象和实现之间的永久绑定或紧密耦合时。 在这种情况下，实现可以在运行时选择或切换</li>
+<li>需要通过子类分别扩展抽象和复合实现时。</li>
+<li>什么时候扩展实现中的更改不应影响客户端</li>
+<li>当系统中有几类类别的分层传播时</li>
+</ul>
+<h3 id="桥接设计模式的优势"><a href="#桥接设计模式的优势" class="headerlink" title="桥接设计模式的优势"></a>桥接设计模式的优势</h3><ul>
+<li>桥接模式允许两个抽象系统和实现者系统之间的独立变化</li>
+<li>它避免了客户端代码绑定到某个实现</li>
+<li>抽象和实现可以清楚地分开，便于将来扩展</li>
+<li>为跨平台开发提供了很好的解决方案</li>
+<li>非常适合在初始开发周期中使用存根进行测试</li>
+</ul>
+<h3 id="桥接设计模式的缺点"><a href="#桥接设计模式的缺点" class="headerlink" title="桥接设计模式的缺点"></a>桥接设计模式的缺点</h3><ul>
+<li>如果可扩展组件的数量增加，此模式可能会导致复杂性</li>
+<li>消息不清晰可能导致性能问题</li>
+</ul>
+<h3 id="桥接器和适配器模式之间的区别"><a href="#桥接器和适配器模式之间的区别" class="headerlink" title="桥接器和适配器模式之间的区别"></a>桥接器和适配器模式之间的区别</h3><p>适配器用于消除已定义的系统与现有的两个系统之间的不兼容性，而桥接模式则用于在开发系统之前解决所有困难</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" rel="tag"># 桥接模式</a>
+          
+            <a href="/tags/Bridge-Design-Pattern/" rel="tag"># Bridge Design Pattern</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" rel="next" title="设计模式之责任链模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之责任链模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" rel="prev" title="设计模式之建造者模式">
+                设计模式之建造者模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/VerneZhong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/syougakuhin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100005467410755" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/chivalry727" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">设计模式之桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A1%A5%E6%8E%A5%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是桥接设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E5%AE%9E%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.2.</span> <span class="nav-text">现实生活中的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">桥接模式如何工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">桥接模式的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">桥接模式解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A0%87%E5%87%86%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E"><span class="nav-number">1.6.</span> <span class="nav-text">桥接模式的标准技术说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%A2%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.7.</span> <span class="nav-text">桥梁设计模式的组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.8.</span> <span class="nav-text">实现桥接模式步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.9.</span> <span class="nav-text">代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.9.1.</span> <span class="nav-text">没有桥接模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.9.2.</span> <span class="nav-text">使用桥接模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A5%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.9.3.</span> <span class="nav-text">该计划的组成部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.9.4.</span> <span class="nav-text">Java代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.10.</span> <span class="nav-text">何时使用桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.11.</span> <span class="nav-text">桥接设计模式的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.12.</span> <span class="nav-text">桥接设计模式的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E5%99%A8%E5%92%8C%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.13.</span> <span class="nav-text">桥接器和适配器模式之间的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2020 &mdash; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Verne.Zhong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
