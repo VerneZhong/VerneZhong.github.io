@@ -115,7 +115,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:chivalry727/chivalry727.github.io.git
+  repository: git@github.com:VerneZhong/VerneZhong.github.io.git
   branch: master
 
 search:
