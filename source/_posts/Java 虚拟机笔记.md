@@ -7,7 +7,7 @@ tags:
 - JVM内存区域
 - JVM对象
 ---
-![](https://tva1.sinaimg.cn/large/008aQ1h9ly1gimfe2w3jrj30lx0amgrz.jpg)
+![](https://github.com/user-attachments/assets/cf0e9371-c81e-4491-b7a0-2304999da266)
 
 <!-- more -->
 
@@ -15,7 +15,7 @@ tags:
 
 #### JVM运行时数据区域
 
-![](http://wx2.sinaimg.cn/large/008aQ1h9ly1ghrbvdoy5jj30k70cpgqk.jpg)
+![](https://github.com/user-attachments/assets/b588cd99-2c55-4e43-b2f7-d83509d15194)
 
 ##### 程序计数器（Program Counter Register）
 
@@ -135,7 +135,7 @@ tags:
 
 #### JVM 对象
 ##### 对象创建
-![WX20200813-151534@2x](https://tva1.sinaimg.cn/large/008aQ1h9ly1ghp7gu9418j31fk0b20w3.jpg)
+![WX20200813-151534@2x](https://github.com/user-attachments/assets/69badbbf-98fd-4d8e-a264-a9ade5dfa0fe)
 
 - 检查指令参数是否在常量池定位到类的符号引用
 - 检查符号引用的类是否已加载、解析、初始化

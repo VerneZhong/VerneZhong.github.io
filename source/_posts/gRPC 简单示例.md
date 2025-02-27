@@ -8,7 +8,7 @@ tags:
 - RPC框架
 ---
 
-![](https://tva4.sinaimg.cn/large/008aQ1h9ly1gimlo6iwmkj30lz0b03zk.jpg)
+![](https://github.com/user-attachments/assets/20fd0982-4922-4657-850b-9efd7cf6c37e)
 
 <!-- more -->
 
@@ -22,7 +22,7 @@ gRPC由 Google 开发，是一款跨语言、跨平台、开源的远程过程�
 
 ### gRPC  示意图
 
-![image-20200812203844651](http://wx3.sinaimg.cn/large/008aQ1h9ly1ghob5ynbfbj30kl0a2gm5.jpg)
+![image-20200812203844651](https://github.com/user-attachments/assets/8267be3c-eb0e-46e5-9db4-85630e66b733)
 
 gRPC 客户端和服务端可以在多种环境中运行和交互 - 从 Google 内部的服务器到你自己的笔记本，并且可以用任何 gRPC [支持的语言](http://doc.oschina.net/grpc?t=58008#quickstart)来编写。所以，你可以很容易地用 Java 创建一个 gRPC 服务端，用 Go、Java、Python、Ruby等语言来创建客户端。此外，Google 最新 API 将有 gRPC 版本的接口，使你很容易地将 Google 的功能集成到你的应用里。
 
@@ -192,7 +192,7 @@ message HelloRpcReply {
 mvn clean package
 ```
 
-![WX20200814-151102@2x](https://tva4.sinaimg.cn/large/008aQ1h9ly1ghqcyfhe5yj30q80m6jtr.jpg)
+![WX20200814-151102@2x](https://github.com/user-attachments/assets/dc430f7d-b2d0-46cc-97c8-f9818429fa6f)
 
 ### 创建  RpcServer  端
 

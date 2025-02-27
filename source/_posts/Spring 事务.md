@@ -7,7 +7,7 @@ tags:
 - Spring事务
 ---
 
-![](https://tva1.sinaimg.cn/large/008aQ1h9ly1gimltdbhxjj30hs0b4750.jpg)
+![](https://github.com/user-attachments/assets/d15d28fd-58bb-480f-99e8-ec7fe74a7513)
 
 <!-- more -->
 

@@ -7,7 +7,7 @@ tags:
 - Java SPI
 ---
 
-![](https://tva2.sinaimg.cn/large/008aQ1h9ly1giqjyorl3fj30p00dwjsf.jpg)
+![](https://github.com/user-attachments/assets/316d91ef-6b1a-415d-b712-2707a3ca7b9f)
 
 <!-- more -->
 
@@ -33,7 +33,7 @@ SPI实现中包含四个组件：
 1. ResourceBundleControlProvider：提供`ResourceBundle.Control`实现的服务提供者的接口。
 2. LocaleServiceProvider，CalendarDataProvider，CalendarNameProvider，CurrencyNameProvider，TimeZoneNameProvider和LocaleNameProvider：用于实现特定于区域设置的服务提供者。
 
-![](https://tva1.sinaimg.cn/large/008aQ1h9ly1gin508rhxqj31wd0rlgp6.jpg)
+![](https://github.com/user-attachments/assets/ac5d1f5e-2cef-409c-a3ed-912f089f7c12)
 
 ### Java SPI 示例
 
@@ -144,7 +144,7 @@ Sending Push Notification with Message = Have a Nice Day!
 
 下图显示了我们的最终项目结构和SPI组件：
 
-![](https://tva4.sinaimg.cn/large/008aQ1h9ly1gin5o6hmkuj30x40knwf4.jpg)
+![](https://github.com/user-attachments/assets/3ad86ad6-de26-4026-9deb-afc1fd04da9f)
 
 ### ServiceLoader  结构
 

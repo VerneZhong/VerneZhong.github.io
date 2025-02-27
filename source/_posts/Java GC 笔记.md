@@ -8,7 +8,7 @@ tags:
 - JVM内存分配
 ---
 
-<img src="https://tvax1.sinaimg.cn/large/008aQ1h9ly1gimnz80rlej30sg0sgwg5.jpg" style="zoom:60%;" />
+![](https://github.com/user-attachments/assets/56e06af0-0889-410f-8e28-05e09d777339)
 
  <!-- more -->  
 
@@ -213,7 +213,7 @@ public class CreateObjectDemo {
 
 通过一系列称为“GC Roots”的根对象作为起始节点集，从这些节点开始，根据引用关系向下搜索，搜索过程所走的路径称为“引用链（Reference Chain）”，如果某个对象到GC Roots间没有任何引用链相连或从GC Roots到这个对象不可达时，则证明此对象是不可能再被使用的
 
-![](http://wx1.sinaimg.cn/large/008aQ1h9ly1ghrccgxbicj30wm0u0413.jpg)
+![](https://github.com/user-attachments/assets/75272312-1fc4-4eaa-a05d-81ee33850475)
 
 ###### 什么是 GC Roots对象
 
@@ -391,7 +391,7 @@ Full GC触发条件
   - 对于内存资源受限的环境，是所有收集器里额外内存消耗最小的
   - 对于单核处理器或处理器核心较少的环境来说，Serial收集器由于没有线程交互的开销，可以获得最高的单线程收集效率
   
-  ![](http://wx2.sinaimg.cn/large/008aQ1h9ly1ghzxp44d6sj31160bcq3n.jpg)
+  ![](https://github.com/user-attachments/assets/59bc7060-31ff-4671-bca9-24cf9bee7dd8)
 
 ##### ParNew收集器
 
@@ -400,7 +400,7 @@ Full GC触发条件
 - 从JDK9 G1收集器的出现，CMS+ParNew收集器的组合就不再是官方推荐的服务器模式下的默认收集器
 - ParNew收集器默认开启的收集线程数与处理器核心数量相同，也可以使用`-XX:ParallelGCThreads`参数来限制垃圾收集器的线程数
 
-![](http://wx2.sinaimg.cn/large/008aQ1h9ly1ghzxtft4mgj31160bawfa.jpg)
+![](https://github.com/user-attachments/assets/a1194f61-dc93-42c5-b869-1ba4dcdbe208)
 
 ##### Parallel Scavenge收集器
 
@@ -420,7 +420,7 @@ Full GC触发条件
   - 控制最大垃圾收集停顿时间的`-XX:MaxGCPauseMillis`参数
   - 直接设置吞吐量大小的`-XX:GCTimeRatio`参数
   
-  ![](http://wx4.sinaimg.cn/large/008aQ1h9ly1ghzy9wa8ehj31160ba751.jpg)
+  ![](https://github.com/user-attachments/assets/2840a08d-bdef-48d9-bbd2-2e9abded4e44)
 
 ##### Serial Old收集器
 
@@ -433,7 +433,7 @@ Full GC触发条件
   - 在JDK5及以前的版本中与Parallel Scavenge收集器搭配使用
   - 是作为CMS收集器发生失败时的后备预案，在并发收集发生Concurrent Mode Failure时使用
   
-  ![](http://wx2.sinaimg.cn/large/008aQ1h9ly1ghzxp44d6sj31160bcq3n.jpg)
+  ![](https://github.com/user-attachments/assets/3c02ceda-4cb2-4e26-8ea9-422b371dc00b)
 
 ##### Parallel Old收集器
 
@@ -442,7 +442,7 @@ Full GC触发条件
 - 从JDK6开始提供，为了解决Parallel Scavenge收集器的尴尬状态，原因在于Parallel Scavenge收集器，老年代除了Serial Old收集器以外别无选择，无法与其他表现良好的老年代收集器配合工作，如CMS收集器
 - 吞吐量优先收集器的组合，在注重吞吐量或者处理器资源较为稀缺的场合，可以考虑Parallel Scavenge加Parallel Old收集器这个组合
 
-![](http://wx4.sinaimg.cn/large/008aQ1h9ly1ghzy9wa8ehj31160ba751.jpg)
+![](https://github.com/user-attachments/assets/1b7bf0e1-38d3-4f7b-a16b-ac860b11a1bc)
 
 ##### CMS（Concurrent Mark Sweep）收集器
 
@@ -469,7 +469,7 @@ Full GC触发条件
 
     - 清理删掉标记阶段判断的已经死亡的对象，由于不需要移动存活对象，所以该阶段也是可以和用户线程同时并发
     
-    ![](http://wx3.sinaimg.cn/large/008aQ1h9ly1ghzyuvrtrdj30tw07tq3n.jpg)
+    ![](https://github.com/user-attachments/assets/19950a44-8a5b-44c0-a542-b796b797bdd5)
 
 ###### CMS 优点
 
@@ -543,7 +543,7 @@ Full GC触发条件
   - 这里的操作涉及存活对象的移动，是必须暂停用户线程，由多条收集器线程并行完成的
 - G1收集器除了并发标记外，其余阶段也是要完全暂停用户线程的，换言之，它并非纯粹地追求低延迟，官方给它设定的目标是在延迟可控的情况下获得尽可能高的吞吐量，所以才担当起“全功能收集器”的重任与期望
   
-  ![](http://wx4.sinaimg.cn/large/008aQ1h9ly1ghzyvezb1bj30ti07aq3p.jpg)
+  ![](https://github.com/user-attachments/assets/30e8f0b5-4d1e-42e1-a5a9-30a1fbfc271d)
 
 ###### G1收集器特点
 

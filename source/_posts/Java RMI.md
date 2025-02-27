@@ -7,7 +7,7 @@ tags:
 - Java RMI 
 ---
 
-![](https://tva2.sinaimg.cn/large/008aQ1h9ly1gip3oad167j30p00dwgm9.jpg)
+![](https://github.com/user-attachments/assets/b970dc4d-cdfd-4f18-b8f0-fd4a6f18e115)
 
 <!-- more -->
 
@@ -47,13 +47,13 @@ RMI应用程序可以分为两部分，**客户端**程序和**服务器**程序
 2. 该方法在远程对象上调用。
 3. 然后，它写入并传输结果的参数。
 
-![](https://tvax4.sinaimg.cn/large/008aQ1h9ly1gip3zir8dej30hq0ekmy1.jpg)
+![](https://github.com/user-attachments/assets/1fd59185-125d-4cdb-b942-1779a77b59b6)
 
 ### Stub 和 Skeleton
 
 `Stub`充当客户端程序的网关。 它位于客户端，并与Skeleton对象通信。 它建立远程对象之间的连接并向其发送请求。
 
-![](https://tvax1.sinaimg.cn/large/008aQ1h9ly1gip40mx4oxj30fk08cglv.jpg)
+![](https://github.com/user-attachments/assets/39cce3ec-7e83-4fec-9af4-780b79eab1ca)
 
 `Skeleton`对象驻留在服务器程序上。 它负责将请求从存根传递到远程对象。
 
@@ -149,7 +149,7 @@ RMI注册表是一个放置所有服务器对象的名称空间。 每次服务�
 
 下图说明了整个过程：
 
-![](https://tvax3.sinaimg.cn/large/008aQ1h9ly1gip5bawpgnj30m00g5424.jpg)
+![](https://github.com/user-attachments/assets/85000957-685e-45b3-968b-5e602a0b2a57)
 
 ***RegistryServer.java***
 
